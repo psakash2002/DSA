@@ -38,7 +38,7 @@
     int choice=1;
     while(choice){
         printf("\nWhat operation you want to perform:\n1. Insertion at beginning\n2. Insertion at end \n3. Insertion at position\n4. Deletion at beginning\n5. Deletion at end\n6. Deletion at position\n7. Reverse the linked list\n");
-        int operation, num;
+        int operation, pos;
         scanf("%d", &operation);
         switch (operation)
         {
@@ -62,7 +62,28 @@
             }
             temp->next=newnode;
             display(head);
+            break;
 
+        case 3:
+            newnode=(struct node*)malloc(sizeof(struct node*));
+            display(head);
+            printf("\nEnter position at which element should be inserted: ");
+            scanf("%d", &pos);
+            printf("Enter element to be inserted: ");
+            scanf("%d", &newnode->data);
+            temp=head;
+            int count=0;
+            struct node *t;
+            while(count<pos-2){
+                temp=temp->next;
+                count++;
+            }
+            t->next=temp->next;
+            temp->next=newnode;
+            newnode->next=t->next;
+            display(head);
+            break;
+               
         default:
             break;
         }
