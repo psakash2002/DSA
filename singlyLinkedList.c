@@ -51,6 +51,18 @@
             display(head);
             break;
         
+        case 2:
+            newnode=(struct node*)malloc(sizeof(struct node*));
+            printf("Enter element to be inserted: ");
+            scanf("%d", &newnode->data);
+            newnode->next=0;
+            temp=head;
+            while(temp->next!=0){
+                temp=temp->next;
+            }
+            temp->next=newnode;
+            display(head);
+
         default:
             break;
         }
