@@ -37,6 +37,7 @@ int main(){
         cout<<"\nWhat operation you want to perform:\n1. Insertion at beginning\n2. Insertion at end \n3. Insertion at position\n4. Deletion at beginning\n5. Deletion at end\n6. Deletion at position\n7. Reverse the linked list\n";
         cin>>choice;
         node *newnode=new node;
+        node *prev;
         switch(choice){
         case 1:
             cout<<"\nEnter element to be inserted: ";
@@ -69,6 +70,37 @@ int main(){
             }
             newnode->next=temp->next;
             temp->next=newnode;
+            display(head);
+            break;
+        case 4:
+            display(head);
+            cout<<endl;
+            temp=head;
+            head=temp->next;
+            delete temp;
+            display(head);
+            break;
+        case 5:
+            temp=head;
+            while(temp->next!=0){
+                prev=temp;
+                temp=temp->next;
+            }
+            prev->next=0;
+            delete temp;
+            display(head);
+            break;
+        case 6:
+            cout<<"\nEnter position to be deleted: ";
+            cin>>pos;
+            temp=head;
+            while(count<pos-1){
+                prev=temp;
+                temp=temp->next;
+                count++;
+            }
+            prev->next=temp->next;
+            delete temp;
             display(head);
             break;
     }
