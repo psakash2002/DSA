@@ -103,6 +103,19 @@ int main(){
             delete temp;
             display(head);
             break;
+        case 7:
+            node *prev, *current, *nextnode;
+            prev=0;
+            current=nextnode=head;
+            while(nextnode!=0){
+                nextnode=nextnode->next;
+                current->next=prev;
+                prev=current;
+                current=nextnode;
+            }
+            head=prev;
+            display(head);
+            break;
     }
         cout<<"\nWant to perform any operation?(Yes-1/No-0): ";
         cin>>toContinue;
