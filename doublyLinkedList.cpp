@@ -54,6 +54,7 @@ int main(){
     cin>>choice;
     while(choice){
         int option, pos, count=0;
+        node *previous;
         cout<<"\nWhat operation you want to perform:\n1. Insertion at beginning\n2. Insertion at end \n3. Insertion at position\n4. Deletion at beginning\n5. Deletion at end\n6. Deletion at position\n7. Reverse the linked list\nEnter your option: ";
         cin>>option;
         node *newnode = new node;
@@ -83,7 +84,6 @@ int main(){
                 cin>>pos;
                 cout<<"Enter element to be inserted: ";
                 cin>>newnode->data;
-                node *temp, *previous;
                 temp=head;
                 while(count<pos-1){
                     previous=temp;
@@ -97,8 +97,54 @@ int main(){
                 displayforward(head);
                 displayReverse(tail);
                 break;
+            case 4:
+                head=head->next;
+                head->prev=0;
+                displayforward(head);
+                displayReverse(tail);
+                break;
+            case 5:
+                tail=tail->prev;
+                tail->next=0;
+                displayforward(head);
+                displayReverse(tail);
+                break;
+            case 6:
+                cout<<"Enter position to be deleted: ";
+                cin>>pos;
+                temp=head;
+                while(count<pos-1){
+                    previous=temp;
+                    temp=temp->next;
+                    count++;
+                }
+                previous->next=temp->next;
+                temp=temp->next;
+                temp->prev=previous;
+                if(previous->next==0){
+                    tail=previous;
+                }
+                displayforward(head);
+                displayReverse(tail);
+                break;
             }
-                
+            case 7:
+                node *previous, *nextnode, *currentnode;
+                previous=0;
+                currentnode=nextnode=head;
+                while(nextnode!=0){
+                    nextnode=nextnode->next;
+                    currentnode->next=previous;
+                    currentnode->prev=nextnode;
+                    previous=currentnode;
+                    currentnode=nextnode;
+                }
+                node *tempo;
+                tempo=head;
+                head=tail;
+                tail=tempo;
+                displayforward(head);
+                displayReverse(tail);
         }
         cout<<"\nDo you want to perform any operation?(yes-1, no-0): ";
         cin>>choice;
